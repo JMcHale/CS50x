@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New Task
+{% endblock %}
+
+{% block main %}
+    <h1 class="container">Please enter your next Task!</h1>
+    <form action="/newtask" method="POST" style="margin-top:2vw">
+        <div class="container entry-box">
+            <input class="entry" name="task" type="text" placeholder="Task">
+            <input class="entry" name="location" type="text" placeholder="Where can it be done?">
+        </div>
+        <div class="container" style="margin-top:1.5vw">
+            <label class="checkbox">
+                <input name="days" type="checkbox" value=2>
+                Monday
+            </label>
+            <label class="checkbox">
+                <input class="checkbox" name="days" type="checkbox" value=4>
+                Tuesday
+            </label>
+            <label class="checkbox">
+                <input class="checkbox" name="days" type="checkbox" value=8>
+                Wednesday
+            </label>
+            <label class="checkbox">
+                <input class="checkbox" name="days" type="checkbox" value=16>
+                Thursday
+            </label>
+            <label class="checkbox">
+                <input class="checkbox" name="days" type="checkbox" value=32>
+                Friday
+            </label>
+            <label class="checkbox">
+                <input class="checkbox" name="days" type="checkbox" value=64>
+                Saturday
+            </label>
+            <label class="checkbox">
+                <input class="checkbox" name="days" type="checkbox" value=1>
+                Sunday
+            </label>
+            <label class="checkbox">
+                <input class="checkbox" name="repeat" type="checkbox" value="repeat">
+                Repeat or not?
+            </label>
+        </div>
+        <div class="container" style="margin-top:1vw">
+            <button type="submit">Submit Task</button>
+        </div>
+    </form>
+{% endblock %}

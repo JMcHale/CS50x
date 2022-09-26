@@ -1,0 +1,44 @@
+table, th, td {
+    border: 1px solid;
+}
+
+main {
+    padding: 20px;
+}
+
+.central {
+    text-align:center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.checkbox {
+    background-color: #eee;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.entry {
+    margin: 10px;
+}
+
+.entry-box {
+    background-color: #eee;
+}
+
+.large-text-box {
+    height:15vw;
+    width:75%;
+}
+
+.header {
+    background-color: #eaa;
+}
+
+.borderless {
+    border: 0px;
+}

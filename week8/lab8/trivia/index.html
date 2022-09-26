@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+
+            //Only run once loaded
+            document.addEventListener('DOMContentLoaded', function(){
+
+                let redbutvar = document.querySelector('#redbut');
+                let truefalse1var = document.querySelector('#truefalse1');
+
+                //Add a lamda function that triggers on button click
+                //Indicate if correct and clear past answer
+                document.querySelector('#redbut').addEventListener('click', function(){
+                    redbutvar.style.backgroundColor = "green";
+                    document.querySelector('#bluebut').style.backgroundColor = "white";
+                    document.querySelector('#greenbut').style.backgroundColor = "white";
+                    truefalse1var.innerHTML = "Correct!";
+                });
+                document.querySelector('#bluebut').addEventListener('click', function(){
+                    document.querySelector('#bluebut').style.backgroundColor = "red";
+                    document.querySelector('#redbut').style.backgroundColor = "white";
+                    document.querySelector('#greenbut').style.backgroundColor = "white";
+                    document.querySelector('#truefalse1').innerHTML = "Incorrect";
+                });
+                document.querySelector('#greenbut').addEventListener('click', function(){
+                    document.querySelector('#redbut').style.backgroundColor = "white";
+                    document.querySelector('#bluebut').style.backgroundColor = "white";
+                    document.querySelector('#greenbut').style.backgroundColor = "red";
+                    document.querySelector('#truefalse1').innerHTML = "Incorrect";
+                });
+
+                document.querySelector('#freesubmit').addEventListener('click', function() {
+                    let freesubmittextv = document.querySelector('#freesubmittext').value;
+                    if (freesubmittextv === 'Paris')
+                    {
+                        document.querySelector('#freesubmittext').style.backgroundColor = 'green';
+                        document.querySelector('#feedback1').innerHTML = 'Correct!';
+                    }
+                    else
+                    {
+                        document.querySelector('#freesubmittext').style.backgroundColor = 'red';
+                        document.querySelector('#feedback1').innerHTML = 'Incorrect';
+                    }
+                });
+            })
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section question1">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>
+                    What colour, is the colour red?
+                </h3>
+                <button id="redbut">
+                    Red
+                </button>
+                <button id="bluebut">
+                    Green
+                </button>
+                <button id="greenbut">
+                    Violet
+                </button>
+                <p id="truefalse1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>
+                    What is is the capital of France?
+                </h3>
+                <input autocomplete="off" id="freesubmittext" type="text">
+                <button id="freesubmit">Check Answer</button>
+                <p id="feedback1"></p>
+            </div>
+        </div>
+    </body>
+</html>

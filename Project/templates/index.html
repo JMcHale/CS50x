@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+    <h1 class="container">This is the Quest-It Dashboard!</h1>
+    <h2 class="container" style="margin-top:2vw">Current Tasks</h2>
+    <div class="container">
+        <table>
+            <tr class="header">
+                <th class="central">Task Number</th>
+                <th class="central">Task</th>
+                <th class="central">Location</th>
+                <th class="central">Days</th>
+            </tr>
+                {% for task in tasks %}
+                <tr>
+                    <td class="central">{{ task["taskID"] }}</td>
+                    <td>{{ task["task"] }}</td>
+                    <td class="central">{{ task["location"] }}</td>
+                    <td class="central">{{ task["days"] }}</td>
+                    <td class="borderless">
+                        <form action="/" method="POST">
+                            <button name="taskbut" type="submit" value="{{ task["taskID"] }}">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+    <h2 class="container" style="margin-top:2vw">Repeated Tasks</h2>
+    <div class="container">
+        <table>
+            <tr class="header">
+                <th class="central">Task Number</th>
+                <th class="central">Task</th>
+                <th class="central">Location</th>
+                <th class="central">Days</th>
+            </tr>
+                {% for repeattask in repeattasks %}
+                <tr>
+                    <td class="central">{{ repeattask["taskID"] }}</td>
+                    <td class="central">{{ repeattask["task"] }}</td>
+                    <td>{{ repeattask["location"] }}</td>
+                    <td class="central">{{ repeattask["days"] }}</td>
+                    <td class="borderless">
+                        <form action="/" method="POST">
+                            <button name="reptaskbut" type="submit" value="{{ repeattask["taskID"] }}">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+    <form class="container" action="/" method="POST">
+        <button style="margin-top:1vw" name="refresh" type="submit" value="true">Refresh Tasks</button>
+    </form>
+{% endblock %}

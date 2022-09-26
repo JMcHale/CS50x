@@ -1,0 +1,44 @@
+<!--just tells html version, html5-->
+<!DOCTYPE html>
+
+<!--sets the lang key to the en value, english-->
+<html lang="en">
+    <head>
+        <link href="home.css" rel="stylesheet">
+        <title>
+            hello, title
+        </title>
+    </head>
+    <body class="centered">
+        <header class="large">
+            Joseph McHale
+        </header>
+        <main>
+            <p>Welcome to my home page</p>
+            <form>
+                <input autocomplete="off" autofocus id="name" placeholder="Input Name" type="text">
+                <input type="submit">
+            </form>
+            <button id="purple">I like Purple!</button>
+            <button id="Red">I like Red!</button>
+            <script>
+
+                document.querySelector("form").addEventListener("submit", function(){
+                    let name = document.querySelector("#name").value;
+                    alert("hello, " + name);
+                });
+
+                //first need to create a variable for the body of the site so we can change it
+                let body = document.querySelector("body");
+
+                document.querySelector("#purple").addEventListener("click", function(){
+                    body.style.backgroundColor = "purple";
+                })
+
+            </script>
+        </main>
+        <footer>
+            Copyright (c) Joseph McHale 12th April
+        </footer>
+    </body>
+</html>

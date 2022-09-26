@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Task History
+{% endblock %}
+
+{% block main %}
+    <h1 class="container">Here are your completed tasks!</h1>
+    <form class="container" style="margin-top:1.5vw" action="/history" method="POST">
+        <select name="taskselect">
+            <option value="" selected disabled hidden>Select Task</option>
+            {% for task in taskselect %}
+                <option value="{{ task["task"] }}">{{ task["task"] }}</option>
+            {% endfor %}
+        </select>
+        <select name="locationselect">
+            <option value="" selected disabled hidden>Select Location</option>
+            {% for location in locationselect %}
+                <option value="{{ location["location"] }}">{{ location["location"] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+        <table style="margin-top:1.5vw" class="container">
+            <tr class="header">
+                <th class="central">Task Completed Number</th>
+                <th class="central">Task</th>
+                <th class="central">Location</th>
+                <th style="width:50%" class="central">Task Details</th>
+                <th>Task Time</th>
+                <th>Task Time Elapsed</th>
+            </tr>
+                {% for task in tasks %}
+                <tr>
+                    <td class="central">{{ task["taskcompID"] }}</td>
+                    <td class="central">{{ task["task"] }}</td>
+                    <td class="central">{{ task["location"] }}</td>
+                    <td>{{ task["taskdetails"] }}</td>
+                    <td class="central">{{ task["tasktime"] | ctime }}</td>
+                    <td class="central">{{ task["timeelapsed"] }}</td>
+                </tr>
+                {% endfor %}
+        </table>
+{% endblock %}

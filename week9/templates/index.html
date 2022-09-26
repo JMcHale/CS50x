@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form action="/greet" method="post">
+    <!-- an input where you go name="nameof" in a get form stores the nameof variable entry in the URL-->
+    <input name="nameof" type="text">
+    <input type="submit">
+</form>
+
+{% endblock %}

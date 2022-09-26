@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Level
+{% endblock %}
+
+{% block main %}
+    <h1>Leveling Page</h1>
+    <p>You Have: {{ leveldata["SUM(timeelapsed)"] }} Total Time</p>
+    <p>You are Level: {{ (leveldata["SUM(timeelapsed)"] / levelsettings[0]["leveldifficulty"])|round(0,'floor')|int }} </p>
+    <p>Your Level Difficulty is: {{ levelsettings[0]["leveldifficulty"] }} </p>
+    <form action="/level" method="POST">
+        <input name="lvldiff" type="number">Choose a Leveling Difficulty
+        <input type="submit">
+    </form>
+{% endblock %}

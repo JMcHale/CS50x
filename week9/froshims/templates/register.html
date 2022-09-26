@@ -1,0 +1,18 @@
+{%extends "layout.html" %}
+
+{% block body %}
+
+    hello, {{session["name"]}}
+
+    you have registered for {{sportuser}}
+
+    {% set count = namespace(value=0) %}
+    {% for sports in sportcheck %}
+
+        the {{ count.value }} sport was {{sports}}
+
+        {% set count.value = count.value + 1 %}
+
+    {% endfor %}
+
+{% endblock %}

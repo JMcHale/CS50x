@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <h2>Hi, User {{ session["user_id"] }}</h2>
+    <p>You have: {{ cashleft[0]["cash"] | usd }} in cash</p>
+    <table class="center">
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Value</th>
+        </tr>
+        {% for stock in stocks %}
+            <tr>
+                <td>{{ stock["symbol"] }}</td>
+                <td>{{ stock["SUM(shares)"] }}</td>
+                <td>{{ stock["price"] | usd}}</td>
+                <td>{{ (stock["SUM(shares)"] * stock["price"]) | usd}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p>You have: {{ totalvalue | usd }} in total value including stocks</p>
+    <form action="/changepassword" method="get">
+        <button class="btn btn-primary" type="submit">Change My Password</button>
+    </form>
+
+{% endblock %}

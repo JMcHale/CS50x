@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <h2>Hi, User {{ session["user_id"] }}</h2>
+    <table class="center">
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Value</th>
+            <th>Buy/Sell</th>
+        </tr>
+        {% for stock in list %}
+            <tr>
+                <td>{{ stock["symbol"] }}</td>
+                <td>{{ stock["shares"] }}</td>
+                <<td>{{ stock["price"] | usd }}</td>
+                <td>{{ (stock["shares"] * stock["price"]) | usd }}</td>
+                <td>{{ stock["type"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

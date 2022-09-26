@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+    <h1>This is the Quest-It Dashboard!</h1>
+    <p>Please Log In</p>
+    <form action="/login" method="POST">
+        <input name="username" type="text" placeholder="Username">
+        <input name="password" type="password" placeholder="Password">
+        <button type="submit">Log In</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: Lower bound when the list is sorted is much quicker than sort 3, and has a larger difference than the upper bound does in sort 2. As such, lower bound must be equal to n for there to be such a noticeable change
+
+sort2 uses: Merge Sort
+
+How do you know?: It's the quickest, no difference between lower and upper bounds when list is already sorted, as it's the quickest it is likely merge sort
+
+sort3 uses: Selection Sort
+
+How do you know?: No difference between lower and upper bounds when list is already sorted, takes longer than sort 2 which must be merge sort

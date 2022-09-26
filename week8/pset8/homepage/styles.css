@@ -1,0 +1,28 @@
+.image-lower{
+    margin-bottom:50px;
+    width:100%;
+ }
+
+#intro{
+     padding:25px;
+     background-color:grey;
+ }
+
+ #introbox{
+     padding:25px;
+ }
+
+.breakone{
+     padding:25px;
+     background-color:lightgrey;
+ }
+
+#contentbox{
+    padding:25px;
+}
+
+#hidden-video{
+    padding:25px;
+    display:none;
+    background-color:lightgrey;
+}

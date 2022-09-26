@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Next Task
+{% endblock %}
+
+{% block main %}
+    <!-- Want to be able to change what task this displays depending on location, to do this we could have a dropdown to select location, and resubmit to post with another button (for now) -->
+    <h1 class="container">This is your next task</h1>
+    {% for task in nexttask %}
+        <h1 class="container" style="margin-top:1.5vw">Your task is: {{ task["task"] }}</h1>
+        <h2 class="container">Good Luck!</h2>
+    <form action="/nexttask" method="POST">
+        <div class="container">
+            <input class="container entry large-text-box" type="text" name="taskdetails" placeholder="Enter Task Completion Details">
+            <input type="hidden" name="tasktime" value="" id="time2">
+            <button style="height:40px" id="submitbut" name="button" type="submit" value={{ task["taskID"] }}>Done</button>
+        </div>
+    {% endfor %}
+        <br>
+        <div class="container" style="margin-top:1.5vw">
+            <label class="checkbox">
+                <input type="checkbox" name="timer" id="timercheck">
+                <input type="hidden" name="timertime" value="" id="timer2">
+                Doing Task
+            </label>
+            <p>Time elapsed: <span id="timer"> </span></p>
+        </div>
+    </form>
+    <h2 class="container" style="margin-top:1.5vw"> Change Parameters: </h2>
+    <form class="container" action="/nexttask" method="GET">
+        <select class="entry" name="locationselect">
+            <option value="" selected disabled hidden>Select Location</option>
+            {% for location in locations %}
+                <option value="{{ location["location"] }}">{{ location["location"] }}</option>
+            {% endfor %}
+        </select>
+        <select class="entry" name="day">
+            <option value="" selected disabled hidden>Select Day</option>
+            <!--Values represent bits that correspond to the day for bitwise arithmetic-->
+            <option value=2>Monday</option>
+            <option value=4>Tuesday</option>
+            <option value=8>Wednesday</option>
+            <option value=16>Thursday</option>
+            <option value=32>Friday</option>
+            <option value=64>Saturday</option>
+            <option value=1>Sunday</option>
+        </select>
+        <button type="submit">Change Location/Day</button>
+    </form>
+    <h1 class="container" style="margin-top:3vw">Time is: <span id="time"> </span></h1>
+
+    <script>
+
+        //Display current time on the page using the setInterval function, by putting in function() and then the function details
+        //in the setInterval() function, we can avoid naming it, yay lambda functions!
+        setInterval(function(){
+            //get the date in a raw millisecond form
+            let date = Date.now();
+
+            //parse this date to be present to user
+            const dateuser = new Date(date);
+            document.getElementById("time").textContent = dateuser.toUTCString();
+
+            //store the date value in millisecond form in the #time2 id element, so it can be input into the task complete table
+            document.getElementById("time2").value = date;
+
+        }, 1000)
+
+        //declare variables for recording time a task takes
+        let timesclick = 0;
+        let timestart = 0;
+        let timeend = 0;
+        let timerecstart = 0;
+        let timerecstop = 0;
+        let elapsedtime = 0;
+
+        //Run the add function when the "Doing a task" button is clicked, start timing or stop timing
+        document.querySelector("#timercheck").addEventListener("click", function(){
+            add()
+        });
+
+        //When a task is submitted, make sure the time elapsed is properly recorded even if user doesn't uncheck the button
+        document.querySelector("#submitbut").addEventListener("click", function(){
+            const checkbox = document.getElementById("timercheck");
+            if (checkbox.checked == true){
+                document.getElementById("timercheck").checked = false;
+                add()
+            }
+        });
+
+        function add(){
+            //Initialise time started at on the first click
+            //checkbox object is used to see if the checkbox is checked or not
+            const checkbox = document.getElementById("timercheck");
+            console.log(checkbox.checked);
+
+            if (timesclick == 0){
+                timestart = Date.now();
+                timerecstart = Date.now();
+
+                document.getElementById("timer").textContent = timeend;
+            }
+
+            if (checkbox.checked == true){
+                //user has started working
+                timerecstart = Date.now();
+
+                document.getElementById("timer").textContent = "Recording time";
+            }
+            else if (checkbox.checked == false){
+                //user has stopped working, record time elapsed and stop recording
+                timerecstop = Date.now();
+                elapsedtime = timerecstop - timerecstart;
+
+                //Add the time elapsed to the total time
+                timeend = timeend + elapsedtime;
+                console.log(timeend);
+
+                //Change time elapsed for viewer to the total time recorded so far
+                document.getElementById("timer").textContent = parseInt(timeend / 1000);
+                //also change hidden value field
+                document.getElementById("timer2").value = timeend;
+            }
+
+            timesclick++;
+        };
+
+    </script>
+
+{% endblock %}
